@@ -1,3 +1,4 @@
+
 class SchuhladenDatabaseManager:
 
     def __init__(self):
