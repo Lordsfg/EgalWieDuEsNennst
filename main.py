@@ -114,6 +114,8 @@ class DatabaseManager:
                 Annotation          VARCHAR(512),
                 QrCode              VARCHAR(512),
                 PRIMARY KEY (ItemID),
+                FOREIGN KEY (CurrentRoomID) REFERENCES Room (RoomID),
+                FOREIGN KEY (BorrowedByUserID) REFERENCES User (UserID),
                 FOREIGN KEY (ProductID) REFERENCES ProductType (ProductID)
             );
         """)
@@ -124,7 +126,7 @@ class DatabaseManager:
                 ItemID              INTEGER NOT NULL,
                 UserID              INTEGER,
                 ItemHistoryTypeID   INTEGER,
-                Date                VARCHAR(128),
+                Date                DATETIME,
                 RoomID              INTEGER,
                 PRIMARY KEY (HistoryID),
                 FOREIGN KEY (ItemID) REFERENCES Item (ItemID),
@@ -134,10 +136,34 @@ class DatabaseManager:
             );
         """)
 
+    def insert_test_data(self):
+        data = [
+            "INSERT INTO `itemhistorytype` (`ItemHistoryTypeID`, `Name`) VALUES (1, 'Ausleihe')",
+            "INSERT INTO `itemhistorytype` (`ItemHistoryTypeID`, `Name`) VALUES (2, 'Rückgabe')",
+            "INSERT INTO `room` (`RoomID`, `RoomNumber`) VALUES (1, 'Raum 101')",
+            "INSERT INTO `room` (`RoomID`, `RoomNumber`) VALUES (2, 'Raum 102')",
+            "INSERT INTO `room` (`RoomID`, `RoomNumber`) VALUES (3, 'Raum 201')",
+            "INSERT INTO `usertype` (`UserTypeID`, `Name`) VALUES (1, 'Admin')",
+            "INSERT INTO `usertype` (`UserTypeID`, `Name`) VALUES (2, 'EndUser')",
+            "INSERT INTO `usertype` (`UserTypeID`, `Name`) VALUES (3, 'Teacher')",
+            "INSERT INTO `producttype` (`ProductID`, `Name`, `Description`) VALUES (1, 'HDMI Kabel', 'HDMI Kabel 3m Länge und so')",
+            "INSERT INTO `producttype` (`ProductID`, `Name`, `Description`) VALUES (2, 'Raspberry', 'Raspberry Pi 4, 4GB Ram mit Case')",
+            "INSERT INTO `user` (`UserID`, `FirstName`, `LastName`, `Email`, `UserTypeID`, `PasswordHash`) VALUES (1, 'Karl', 'Dieter', 'karl.dieter@deinemum.com', '2', 'sojkfghspoghügbjsoigjs')",
+            "INSERT INTO `user` (`UserID`, `FirstName`, `LastName`, `Email`, `UserTypeID`, `PasswordHash`) VALUES (2, 'Madita', 'Karlson', 'madita.karlson@moin.de', 1, 'dgfdgdfhfshjfnrfthrh,fxh,frxhfhffhxfhfxusrhsgaejme,ehfhf')",
+            "INSERT INTO `user` (`UserID`, `FirstName`, `LastName`, `Email`, `UserTypeID`, `PasswordHash`) VALUES (3, 'Karlos', 'Adminos', 'karlos.adminos@admin.de', 1, 'gfsngjdezkdhf,jgkjghbdrh,fjfshgbhrshkmsrtherbgr')",
+            "INSERT INTO `item` (`ItemID`, `ProductID`, `CurrentRoomID`, `BorrowedByUserID`, `Annotation`, `QrCode`) VALUES (1, 1, 1, NULL, 'Digga, Kratzer da Oben', 'sfsgsdgfsfs')",
+            "INSERT INTO `itemhistory` (`HistoryID`, `ItemID`, `UserID`, `ItemHistoryTypeID`, `Date`, `RoomID`) VALUES (NULL, '1', '1', '1', '2024-03-07 16:05:57', '1')",
+            "INSERT INTO `itemhistory` (`HistoryID`, `ItemID`, `UserID`, `ItemHistoryTypeID`, `Date`, `RoomID`) VALUES (NULL, '1', '1', '2', '2024-03-07 16:16:30', '3')"
+        ]
+
+        for entry in data:
+            self.execute_sql_commit(entry)
+
 
 def main():
     dbm = DatabaseManager()
     dbm.create_tables()
+    dbm.insert_test_data()
 
 
 if __name__ == '__main__':
