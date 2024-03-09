@@ -18,7 +18,7 @@ class DatabaseManager:
             database=""
         )
         # always deleting the database and creating it new (for testing)
-        self.create_database(database_name)
+        #self.create_database(database_name)
         self.database_connection = mysql.connector.connect(
             host="localhost",
             port=3306,
@@ -138,22 +138,22 @@ class DatabaseManager:
 
     def insert_test_data(self):
         data = [
-            "INSERT INTO `itemhistorytype` (`ItemHistoryTypeID`, `Name`) VALUES (1, 'Ausleihe')",
-            "INSERT INTO `itemhistorytype` (`ItemHistoryTypeID`, `Name`) VALUES (2, 'Rückgabe')",
-            "INSERT INTO `room` (`RoomID`, `RoomNumber`) VALUES (1, 'Raum 101')",
-            "INSERT INTO `room` (`RoomID`, `RoomNumber`) VALUES (2, 'Raum 102')",
-            "INSERT INTO `room` (`RoomID`, `RoomNumber`) VALUES (3, 'Raum 201')",
-            "INSERT INTO `usertype` (`UserTypeID`, `Name`) VALUES (1, 'Admin')",
-            "INSERT INTO `usertype` (`UserTypeID`, `Name`) VALUES (2, 'EndUser')",
-            "INSERT INTO `usertype` (`UserTypeID`, `Name`) VALUES (3, 'Teacher')",
-            "INSERT INTO `producttype` (`ProductID`, `Name`, `Description`) VALUES (1, 'HDMI Kabel', 'HDMI Kabel 3m Länge und so')",
-            "INSERT INTO `producttype` (`ProductID`, `Name`, `Description`) VALUES (2, 'Raspberry', 'Raspberry Pi 4, 4GB Ram mit Case')",
-            "INSERT INTO `user` (`UserID`, `FirstName`, `LastName`, `Email`, `UserTypeID`, `PasswordHash`) VALUES (1, 'Karl', 'Dieter', 'karl.dieter@deinemum.com', '2', 'sojkfghspoghügbjsoigjs')",
-            "INSERT INTO `user` (`UserID`, `FirstName`, `LastName`, `Email`, `UserTypeID`, `PasswordHash`) VALUES (2, 'Madita', 'Karlson', 'madita.karlson@moin.de', 1, 'dgfdgdfhfshjfnrfthrh,fxh,frxhfhffhxfhfxusrhsgaejme,ehfhf')",
-            "INSERT INTO `user` (`UserID`, `FirstName`, `LastName`, `Email`, `UserTypeID`, `PasswordHash`) VALUES (3, 'Karlos', 'Adminos', 'karlos.adminos@admin.de', 1, 'gfsngjdezkdhf,jgkjghbdrh,fjfshgbhrshkmsrtherbgr')",
-            "INSERT INTO `item` (`ItemID`, `ProductID`, `CurrentRoomID`, `BorrowedByUserID`, `Annotation`, `QrCode`) VALUES (1, 1, 1, NULL, 'Digga, Kratzer da Oben', 'sfsgsdgfsfs')",
-            "INSERT INTO `itemhistory` (`HistoryID`, `ItemID`, `UserID`, `ItemHistoryTypeID`, `Date`, `RoomID`) VALUES (NULL, '1', '1', '1', '2024-03-07 16:05:57', '1')",
-            "INSERT INTO `itemhistory` (`HistoryID`, `ItemID`, `UserID`, `ItemHistoryTypeID`, `Date`, `RoomID`) VALUES (NULL, '1', '1', '2', '2024-03-07 16:16:30', '3')"
+            "INSERT INTO `itemhistorytype` (`id`, `Name`) VALUES (1, 'Ausleihe')",
+            "INSERT INTO `itemhistorytype` (`id`, `Name`) VALUES (2, 'Rückgabe')",
+            "INSERT INTO `room` (`id`, `room_number`) VALUES (1, 'Raum 101')",
+            "INSERT INTO `room` (`id`, `room_number`) VALUES (2, 'Raum 102')",
+            "INSERT INTO `room` (`id`, `room_number`) VALUES (3, 'Raum 201')",
+            "INSERT INTO `usertype` (`id`, `Name`) VALUES (1, 'Admin')",
+            "INSERT INTO `usertype` (`id`, `Name`) VALUES (2, 'EndUser')",
+            "INSERT INTO `usertype` (`id`, `Name`) VALUES (3, 'Teacher')",
+            "INSERT INTO `producttype` (`id`, `Name`, `Description`) VALUES (1, 'HDMI Kabel', 'HDMI Kabel 3m Länge und so')",
+            "INSERT INTO `producttype` (`id`, `Name`, `Description`) VALUES (2, 'Raspberry', 'Raspberry Pi 4, 4GB Ram mit Case')",
+            "INSERT INTO `user` (`id`, `First_Name`, `Last_Name`, `Email`, `User_Type_ID`, `Password_Hash`) VALUES (1, 'Karl', 'Dieter', 'karl.dieter@deinemum.com', '2', 'sojkfghspoghügbjsoigjs')",
+            "INSERT INTO `user` (`id`, `First_Name`, `Last_Name`, `Email`, `User_Type_ID`, `Password_Hash`) VALUES (2, 'Madita', 'Karlson', 'madita.karlson@moin.de', 1, 'dgfdgdfhfshjfnrfthrh,fxh,frxhfhffhxfhfxusrhsgaejme,ehfhf')",
+            "INSERT INTO `user` (`id`, `First_Name`, `Last_Name`, `Email`, `User_Type_ID`, `Password_Hash`) VALUES (3, 'Karlos', 'Adminos', 'karlos.adminos@admin.de', 1, 'gfsngjdezkdhf,jgkjghbdrh,fjfshgbhrshkmsrtherbgr')",
+            "INSERT INTO `item` (`id`, `Product_type_ID`, `Current_Room_ID`, `Borrowed_By_User_ID`, `Annotation`, `Qr_Code`) VALUES (1, 1, 1, NULL, 'Digga, Kratzer da Oben', 'sfsgsdgfsfs')",
+            "INSERT INTO `itemhistory` (`id`, `Item_ID`, `User_ID`, `Item_History_Type_ID`, `Date`, `Room_ID`) VALUES (NULL, '1', '1', '1', '2024-03-07 16:05:57', '1')",
+            "INSERT INTO `itemhistory` (`id`, `Item_ID`, `User_ID`, `Item_History_Type_ID`, `Date`, `Room_ID`) VALUES (NULL, '1', '1', '2', '2024-03-07 16:16:30', '3')"
         ]
 
         for entry in data:
@@ -162,7 +162,7 @@ class DatabaseManager:
 
 def main():
     dbm = DatabaseManager()
-    dbm.create_tables()
+    #dbm.create_tables()
     dbm.insert_test_data()
 
 

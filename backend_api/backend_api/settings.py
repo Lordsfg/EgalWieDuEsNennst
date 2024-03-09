@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-+pn3_=(nl3urg&qv%*!6s_r#q=qkh@6@39dza5x5i6!o-n$m3t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'backend.apps.BackendConfig',
     'rest_framework',
 ]
 
@@ -75,10 +76,15 @@ WSGI_APPLICATION = 'backend_api.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+  'default': {
+    # MySQL engine. Powered by the mysqlclient module.
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'logistics_system',
+    'USER': 'root',
+    'PASSWORD': '',
+    'HOST': 'localhost',
+    'PORT': '3306',
+  }
 }
 
 
