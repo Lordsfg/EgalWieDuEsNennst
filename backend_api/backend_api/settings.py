@@ -76,16 +76,22 @@ WSGI_APPLICATION = 'backend_api.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-  'default': {
-    # MySQL engine. Powered by the mysqlclient module.
-    'ENGINE': 'django.db.backends.mysql',
-    'NAME': 'logistics_system',
-    'USER': 'root',
-    'PASSWORD': '',
-    'HOST': 'localhost',
-    'PORT': '3306',
-  }
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'logistics_system',
+        'USER': 'root',
+        'PASSWORD': 'admin',
+        'HOST': 'db',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET default_storage_engine=INNODB"
+        },
+        'TEST': {
+            'NAME': 'test_database',
+        },
+    }
 }
+
 
 
 # Password validation
