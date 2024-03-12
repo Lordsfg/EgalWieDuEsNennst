@@ -1,24 +1,24 @@
 from django.db import models
 
-from .product_type_model import ProductTypeModel
-from .room_model import RoomModel
-from .user_model import UserModel
+from .product_type_model import ProductType
+from .room_model import Room
+from .user_model import User
 
 
-class ItemModel(models.Model):
+class Item(models.Model):
     id = models.AutoField(
         primary_key=True
     )
 
     product_type = models.ForeignKey(
-        ProductTypeModel,
+        ProductType,
         null=True,
         blank=True,
         on_delete=models.CASCADE
     )
 
     current_room = models.ForeignKey(
-        RoomModel,
+        Room,
         null=True,
         blank=True,
         on_delete=models.CASCADE
@@ -31,7 +31,7 @@ class ItemModel(models.Model):
     )
 
     borrowed_by_user = models.ForeignKey(
-        UserModel,
+        User,
         null=True,
         blank=True,
         on_delete=models.CASCADE

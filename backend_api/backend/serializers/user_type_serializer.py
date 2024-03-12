@@ -1,10 +1,10 @@
 from rest_framework import serializers
 
-from ..models import UserTypeModel
+from ..models import UserType
 
 
 class UserTypeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserTypeModel
+        model = UserType
         fields = ['id', 'name']
         read_only_fields = ['id']

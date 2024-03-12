@@ -1,9 +1,9 @@
 from .base_view import BaseCRUDAPIView
 from ..serializers import ProductTypeSerializer
-from ..models import ProductTypeModel
+from ..models import ProductType
 
 
 class ProductTypeView(BaseCRUDAPIView):
-    queryset = ProductTypeModel.objects.all()
+    queryset = ProductType.objects.all()
     serializer_class = ProductTypeSerializer
     lookup_fields = {'id': 'id', 'name': 'name', 'description': 'description'}

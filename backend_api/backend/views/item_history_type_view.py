@@ -1,9 +1,9 @@
 from .base_view import BaseCRUDAPIView
 from ..serializers import ItemHistoryTypeSerializer
-from ..models import ItemHistoryTypeModel
+from ..models import ItemHistoryType
 
 
 class ItemHistoryTypeView(BaseCRUDAPIView):
-    queryset = ItemHistoryTypeModel.objects.all()
+    queryset = ItemHistoryType.objects.all()
     serializer_class = ItemHistoryTypeSerializer
     lookup_fields = {'id': 'id', 'name': 'name'}

@@ -1,10 +1,10 @@
 from rest_framework import serializers
 
-from ..models import ItemHistoryTypeModel
+from ..models import ItemHistoryType
 
 
 class ItemHistoryTypeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ItemHistoryTypeModel
+        model = ItemHistoryType
         fields = ['id', 'name']
         read_only_fields = ['id']

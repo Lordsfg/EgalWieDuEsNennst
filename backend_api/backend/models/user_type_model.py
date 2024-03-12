@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class UserTypeModel(models.Model):
+class UserType(models.Model):
     id = models.AutoField(
         primary_key=True
     )

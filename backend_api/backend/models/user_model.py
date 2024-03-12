@@ -1,9 +1,9 @@
 from django.db import models
 
-from .user_type_model import UserTypeModel
+from .user_type_model import UserType
 
 
-class UserModel(models.Model):
+class User(models.Model):
     id = models.AutoField(
         primary_key=True
     )
@@ -27,7 +27,7 @@ class UserModel(models.Model):
     )
 
     user_type = models.ForeignKey(
-        UserTypeModel,
+        UserType,
         on_delete=models.CASCADE
     )
 

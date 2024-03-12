@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class ProductTypeModel(models.Model):
+class ProductType(models.Model):
     id = models.AutoField(
         primary_key=True
     )

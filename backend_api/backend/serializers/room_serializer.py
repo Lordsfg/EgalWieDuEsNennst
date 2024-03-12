@@ -1,10 +1,10 @@
 from rest_framework import serializers
 
-from ..models import RoomModel
+from ..models import Room
 
 
 class RoomSerializer(serializers.ModelSerializer):
     class Meta:
-        model = RoomModel
+        model = Room
         fields = ['id', 'room_number']
         read_only_fields = ['id']

@@ -4,7 +4,7 @@ from .item_serializer import ItemSerializer
 from .user_serializer import UserSerializer
 from .item_history_type_serializer import ItemHistoryTypeSerializer
 from .room_serializer import RoomSerializer
-from ..models import ItemHistoryModel
+from ..models import ItemHistory
 
 
 class ItemHistorySerializer(serializers.ModelSerializer):
@@ -14,6 +14,6 @@ class ItemHistorySerializer(serializers.ModelSerializer):
     room = RoomSerializer()
 
     class Meta:
-        model = ItemHistoryModel
+        model = ItemHistory
         fields = ['id', 'item', 'user', 'item_history_type', 'room', 'date']
         read_only_fields = ['id']

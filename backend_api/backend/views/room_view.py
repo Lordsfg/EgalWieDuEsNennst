@@ -1,9 +1,9 @@
 from .base_view import BaseCRUDAPIView
 from ..serializers import RoomSerializer
-from ..models import RoomModel
+from ..models import Room
 
 
 class RoomView(BaseCRUDAPIView):
-    queryset = RoomModel.objects.all()
+    queryset = Room.objects.all()
     serializer_class = RoomSerializer
     lookup_fields = {'id': 'id', 'room_number': 'room_number'}

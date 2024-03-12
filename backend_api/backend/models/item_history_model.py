@@ -1,39 +1,39 @@
 from django.db import models
 
-from .item_model import ItemModel
-from .user_model import UserModel
-from .item_history_type_model import ItemHistoryTypeModel
-from .room_model import RoomModel
+from .item_model import Item
+from .user_model import User
+from .item_history_type_model import ItemHistoryType
+from .room_model import Room
 
 
-class ItemHistoryModel(models.Model):
+class ItemHistory(models.Model):
     id = models.AutoField(
         primary_key=True
     )
 
     item = models.ForeignKey(
-        ItemModel,
+        Item,
         null=False,
         blank=False,
         on_delete=models.CASCADE
     )
 
     user = models.ForeignKey(
-        UserModel,
+        User,
         null=False,
         blank=False,
         on_delete=models.CASCADE
     )
 
     item_history_type = models.ForeignKey(
-        ItemHistoryTypeModel,
+        ItemHistoryType,
         null=False,
         blank=False,
         on_delete=models.CASCADE
     )
 
     room = models.ForeignKey(
-        RoomModel,
+        Room,
         null=False,
         blank=False,
         on_delete=models.CASCADE

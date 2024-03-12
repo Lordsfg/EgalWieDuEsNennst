@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class ItemHistoryTypeModel(models.Model):
+class ItemHistoryType(models.Model):
     id = models.AutoField(
         primary_key=True
     )

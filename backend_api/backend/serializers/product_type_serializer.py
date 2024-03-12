@@ -1,10 +1,10 @@
 from rest_framework import serializers
 
-from ..models import ProductTypeModel
+from ..models import ProductType
 
 
 class ProductTypeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ProductTypeModel
+        model = ProductType
         fields = ['id', 'name', 'description']
         read_only_fields = ['id']

@@ -89,6 +89,15 @@ DATABASES = {
         'TEST': {
             'NAME': 'test_database',
         },
+    },
+    'local_default': {
+        # MySQL engine. Powered by the mysqlclient module.
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'logistics_system',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
