@@ -17,10 +17,6 @@ services:
 
   web:
     build: .
-    command: >
-      sh -c "python backend_api/manage.py makemigrations backend&&
-             python backend_api/manage.py migrate &&
-             python backend_api/manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./backend_api:/app/backend_api
     ports:

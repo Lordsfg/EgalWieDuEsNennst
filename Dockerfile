@@ -20,11 +20,17 @@ WORKDIR /app
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy wait-for-it.sh script
+ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh /app/wait-for-it.sh
+
+# Set execute permissions for the script
+RUN chmod +x /app/wait-for-it.sh
+
 # Copy project files
 COPY . /app/
 
 # Expose port
 EXPOSE 8000
 
-# Run Django server
-CMD ["python", "backend_api/manage.py", "runserver", "0.0.0.0:8000"]
+# Run Django server with wait-for-it.sh script
+CMD ["sh", "-c", "/app/wait-for-it.sh db:3306 -- python backend_api/manage.py runserver 0.0.0.0:8000"]
