@@ -34,7 +34,8 @@ class Item(models.Model):
         User,
         null=True,
         blank=True,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        default=None
     )
 
     qr_code = models.TextField(
