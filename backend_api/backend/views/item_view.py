@@ -6,9 +6,9 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 class ItemView(BaseCRUDAPIView):
-    queryset = Item.objects.all()
+    queryset = Item.objects.all().order_by('-id')
     serializer_class = ItemSerializer
-    lookup_fields = {'id': 'id', 'product_type': 'product_type', 'current_room': 'current_room', 'annotation': 'annotation', 'borrowed_by_user': 'borrowed_by_user', 'qr_code': 'qr_code'}
+    lookup_fields = {'id': 'id'}
 
     @api_view(['GET'])
     def get_borrowed_items_by_user_id(request, user_id: int):
