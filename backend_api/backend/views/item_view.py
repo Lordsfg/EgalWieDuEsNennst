@@ -11,7 +11,7 @@ class ItemView(BaseCRUDAPIView):
     lookup_fields = {'id': 'id', 'product_type': 'product_type', 'current_room': 'current_room', 'annotation': 'annotation', 'borrowed_by_user': 'borrowed_by_user', 'qr_code': 'qr_code'}
 
     @api_view(['GET'])
-    def get_borrowed_items(request, user_id: int):
+    def get_borrowed_items_by_user_id(request, user_id: int):
         
         borrowed_items = Item.objects.filter(borrowed_by_user__id=user_id)
 
