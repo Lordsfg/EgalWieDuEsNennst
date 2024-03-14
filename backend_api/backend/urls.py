@@ -1,5 +1,4 @@
 from django.urls import path
-
 from . import views
 
 api_pattern = "api/v1/"
@@ -32,4 +31,7 @@ urlpatterns = [
   # ItemHistoryType
   path(f'{api_pattern}item-history-type/', views.ItemHistoryTypeView.as_view(), name='item-history-type-list'),
   path(f'{api_pattern}item-history-type/<str:lookup_field>/<str:lookup_value>/', views.ItemHistoryTypeView.as_view(), name='item-history-type-lookup'),
+
+  # BorrowedItems
+  path(f'{api_pattern}borrowed_items_by_user/<int:user_id>/', views.ItemView.get_borrowed_items, name='get_borrowed_items'),
 ]
