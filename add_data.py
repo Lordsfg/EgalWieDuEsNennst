@@ -1,7 +1,8 @@
 import requests
 
-base_url = "http://127.0.0.1:8000/api/v1/"
-
+base_url = "http://192.168.6.107:8000/api/v1/"
+## school internet ip on Long's local
+## 192.168.6.107
 test_data = [
     {"model": "item-history-type", "fields": {"name": "Ausleihe"}},
     {"model": "item-history-type", "fields": {"name": "Rückgabe"}},
