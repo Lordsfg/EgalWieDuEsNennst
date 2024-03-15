@@ -57,10 +57,12 @@ class ItemReturnModel(serializers.ModelSerializer):
             representation['user_id'] = borrowed_by_user.id
             representation['user_name'] = f"{borrowed_by_user.first_name} {borrowed_by_user.last_name}"
             representation['user_type'] = borrowed_by_user.user_type.name
+            representation['user_email'] = borrowed_by_user.user_type.email
         else:
             # Remove user_id and user_name if item is not borrowed by any user
             representation.pop('user_id', None)
             representation.pop('user_name', None)
             representation.pop('user_type', None)
+            representation.pop('user_email', None)
         return representation
     
