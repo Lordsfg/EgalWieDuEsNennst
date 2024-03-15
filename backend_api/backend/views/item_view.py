@@ -23,4 +23,10 @@ class ItemView(BaseCRUDAPIView):
         item = Item.objects.get(id=item_id)
         serializer = ItemReturnModel(item)
         return Response(serializer.data)
+    
+    @api_view(['GET'])
+    def get_all_items(request):
+        items = Item.objects.all()
+        serializer = ItemReturnModel(items, many=True)
+        return Response(serializer.data)
 
