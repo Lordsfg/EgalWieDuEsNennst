@@ -26,7 +26,7 @@ class ItemView(BaseCRUDAPIView):
     
     @api_view(['GET'])
     def get_all_items(request):
-        items = Item.objects.all()
+        items = Item.objects.all().order_by('-id')
         serializer = ItemReturnModel(items, many=True)
         return Response(serializer.data)
 
