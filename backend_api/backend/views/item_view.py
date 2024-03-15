@@ -1,5 +1,5 @@
 from .base_view import BaseCRUDAPIView
-from ..serializers import ItemSerializer
+from ..serializers import ItemSerializer, ItemReturnModel
 from ..models import Item
 from rest_framework import generics
 from rest_framework.response import Response
@@ -16,5 +16,11 @@ class ItemView(BaseCRUDAPIView):
         borrowed_items = Item.objects.filter(borrowed_by_user__id=user_id)
 
         serializer = ItemSerializer(borrowed_items, many=True)
+        return Response(serializer.data)
+    
+    @api_view(['GET'])
+    def get_item_details(request, item_id: int):
+        item = Item.objects.get(id=item_id)
+        serializer = ItemReturnModel(item)
         return Response(serializer.data)
 
