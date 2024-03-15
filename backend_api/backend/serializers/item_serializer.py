@@ -11,7 +11,7 @@ class ItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Item
-        fields = ['id', 'product_type', 'current_room', 'annotation', 'borrowed_by_user', 'qr_code']
+        fields = ['id', 'product_type', 'current_room', 'annotation', 'borrowed_by_user']
         read_only_fields = ['id']
 
     def to_representation(self, instance):

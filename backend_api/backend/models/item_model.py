@@ -38,11 +38,5 @@ class Item(models.Model):
         default=None
     )
 
-    qr_code = models.TextField(
-        max_length=10000,
-        null=True,
-        blank=True
-    )
-
     class Meta:
         db_table = 'Item'
