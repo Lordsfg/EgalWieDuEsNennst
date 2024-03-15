@@ -33,7 +33,7 @@ class ItemReturnModel(serializers.ModelSerializer):
     user_id = serializers.IntegerField(source='borrowed_by_user.id', required=False)
     user_name = serializers.CharField(source='borrowed_by_user.first_name', required=False)
     user_type = serializers.CharField(source='borrowed_by_user.user_type.name', required=False)
-    user_email = serializers.CharField(source='borrowed_by_user.email', required=False)
+    user_email = serializers.SerializerMethodField(required=False)
 
     ## items metadata that is in another table
     item_name = serializers.CharField(source='product_type.name', required=False)
@@ -44,6 +44,13 @@ class ItemReturnModel(serializers.ModelSerializer):
         model = Item
         fields = ['id', 'item_name', 'description', 'annotation', 'location', 'user_id', 'user_name', 'user_type', 'user_email']
         read_only_fields = ['id']
+
+    def get_user_email(self, instance):
+        borrowed_by_user = instance.borrowed_by_user
+        if borrowed_by_user and borrowed_by_user.email:
+            return borrowed_by_user.email
+        return None
+    
 
     def to_representation(self, instance):
         """
@@ -57,7 +64,8 @@ class ItemReturnModel(serializers.ModelSerializer):
             representation['user_id'] = borrowed_by_user.id
             representation['user_name'] = f"{borrowed_by_user.first_name} {borrowed_by_user.last_name}"
             representation['user_type'] = borrowed_by_user.user_type.name
-            representation['user_email'] = borrowed_by_user.user_type.email
+            if ():
+                representation['user_email'] = borrowed_by_user.user_type.email
         else:
             # Remove user_id and user_name if item is not borrowed by any user
             representation.pop('user_id', None)
