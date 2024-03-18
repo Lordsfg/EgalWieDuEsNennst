@@ -25,9 +25,11 @@ urlpatterns = [
   path(f'{api_pattern}item/<str:lookup_field>/<str:lookup_value>/', views.ItemView.as_view(), name='item-lookup'),
 
   # Get all Items
-  path(f'{api_pattern}items_all/', views.ItemView.get_all_items, name='item-return'),
+  path(f'{api_pattern}items-all/', views.ItemView.get_all_items, name='item-return'),
   # Get item details by ID
-  path(f'{api_pattern}item_details/<int:item_id>/', views.ItemView.get_item_details, name='item-return'),
+  path(f'{api_pattern}item-details/<int:item_id>/', views.ItemView.get_item_details, name='item-details'),
+
+  path(f'{api_pattern}items-new/', views.ItemView.add_new_items, name='item-new'),
 
   # ItemHistory
   path(f'{api_pattern}item-history/', views.ItemHistoryView.as_view(), name='item-history-list'),
