@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import ItemImageView
 
 api_pattern = "api/v1/"
 
@@ -41,4 +42,7 @@ urlpatterns = [
 
   # BorrowedItems
   path(f'{api_pattern}borrowed_items_by_user/<int:user_id>/', views.ItemView.get_borrowed_items_by_user_id, name='get_borrowed_items'),
+
+  path(f'{api_pattern}items/<int:pk>/image/', ItemImageView.as_view(), name='item-image-detail'),
+  path(f'{api_pattern}items/image/', ItemImageView.as_view(), name='item-image-list'),
 ]

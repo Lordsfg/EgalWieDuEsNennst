@@ -5,3 +5,4 @@ from .item_history_type_view import ItemHistoryTypeView
 from .user_view import UserView
 from .item_view import ItemView
 from .item_history_view import ItemHistoryView
+from .item_image_view import ItemImageView
