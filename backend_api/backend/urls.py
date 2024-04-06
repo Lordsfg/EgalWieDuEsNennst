@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 from .views import ItemImageView
+from django.conf import settings
+from django.conf.urls.static import static
 
 api_pattern = "api/v1/"
 
@@ -43,6 +45,9 @@ urlpatterns = [
   # BorrowedItems
   path(f'{api_pattern}borrowed_items_by_user/<int:user_id>/', views.ItemView.get_borrowed_items_by_user_id, name='get_borrowed_items'),
 
-  path(f'{api_pattern}items/<int:pk>/image/', ItemImageView.as_view(), name='item-image-detail'),
-  path(f'{api_pattern}items/image/', ItemImageView.as_view(), name='item-image-list'),
+  path(f'{api_pattern}items/<int:id>/image/', ItemImageView.as_view(), name='item-image-detail'),
 ]
+
+# Retrieve image
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

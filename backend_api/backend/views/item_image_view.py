@@ -11,24 +11,23 @@ import requests
 class ItemImageView(BaseCRUDAPIView):
     serializer_class = ItemImageSerializer
     queryset = ItemImage.objects.all()
-    def get(self, request, pk):
+    def get(self, request, id):
         try:
-            item_images = ItemImage.objects.filter(device_id=pk)
+            item_images = ItemImage.objects.filter(device_id=id)
             serializer = ItemImageSerializer(item_images, many=True)
             return Response(serializer.data)
         except ItemImage.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
         
 
-    def post(self, request, pk):
-        # Retrieve the Item instance based on the provided primary key
+    def post(self, request, id):
         try:
-            item = Item.objects.get(pk=pk)
+            item = Item.objects.get(pk=id)
         except Item.DoesNotExist:
             return Response({"error": "Item not found"}, status=status.HTTP_404_NOT_FOUND)
 
         # Associate the Item instance with the ItemImage instance being created
-        request.data['device_id'] = pk
+        request.data['device_id'] = id
 
         # Serialize and save the ItemImage instance
         serializer = ItemImageSerializer(data=request.data)
@@ -38,9 +37,9 @@ class ItemImageView(BaseCRUDAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 
-    def patch(self, request, pk):
+    def patch(self, request, id):
         try:
-            item_image = ItemImage.objects.get(pk=pk)
+            item_image = ItemImage.objects.get(pk=id)
             serializer = ItemImageSerializer(item_image, data=request.data, partial=True)
             if serializer.is_valid():
                 serializer.save()
@@ -49,10 +48,13 @@ class ItemImageView(BaseCRUDAPIView):
         except ItemImage.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-    def delete(self, request, pk):
+    def delete(self, request, id):
         try:
-            item_image = ItemImage.objects.get(pk=pk)
-            item_image.delete()
+            item_images = ItemImage.objects.filter(device_id=id)
+            
+            # Delete each ItemImage object
+            for item_image in item_images:
+                item_image.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         except ItemImage.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
