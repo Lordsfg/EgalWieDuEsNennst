@@ -50,9 +50,10 @@ class ItemImageView(BaseCRUDAPIView):
 
     def delete(self, request, id):
         try:
+            # all images of one item
             item_images = ItemImage.objects.filter(device_id=id)
             
-            # Delete each ItemImage object
+            # Delete all images of one item
             for item_image in item_images:
                 item_image.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
