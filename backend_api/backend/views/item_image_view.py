@@ -23,7 +23,7 @@ class ItemImageView(BaseCRUDAPIView):
 
     def post(self, request, id):
         try:
-            item = Item.objects.get(pk=id)
+            item = Item.objects.get(id=id)
         except Item.DoesNotExist:
             return Response({"error": "Item not found"}, status=status.HTTP_404_NOT_FOUND)
 
