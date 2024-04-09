@@ -7,6 +7,7 @@ from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 import requests
+import os
 
 class ItemImageView(BaseCRUDAPIView):
     serializer_class = ItemImageSerializer
@@ -55,6 +56,12 @@ class ItemImageView(BaseCRUDAPIView):
             
             # Delete all images of one item
             for item_image in item_images:
+                # Delete the associated image file from the media directory
+                if item_image.image:
+                    image_path = item_image.image.path
+                    if os.path.exists(image_path):
+                        os.remove(image_path)
+                # Delete the database record
                 item_image.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         except ItemImage.DoesNotExist:

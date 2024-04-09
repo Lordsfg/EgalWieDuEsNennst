@@ -23,6 +23,7 @@ services:
              python backend_api/manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./backend_api:/app/backend_api
+      - ./media:/app/media
     ports:
       - "8000:8000"
     depends_on:

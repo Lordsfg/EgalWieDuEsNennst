@@ -45,6 +45,7 @@ urlpatterns = [
   # BorrowedItems
   path(f'{api_pattern}borrowed_items_by_user/<int:user_id>/', views.ItemView.get_borrowed_items_by_user_id, name='get_borrowed_items'),
 
+  # All images of 1 item
   path(f'{api_pattern}items/<int:id>/image/', ItemImageView.as_view(), name='item-image-detail'),
 ]
 
