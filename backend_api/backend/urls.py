@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import ItemImageView
+from .views import ItemImageView, GetItemHistoryByItemId
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -37,11 +37,11 @@ urlpatterns = [
   # ItemHistory
   path(f'{api_pattern}item-history/', views.ItemHistoryView.as_view(), name='item-history-list'),
   path(f'{api_pattern}item-history/<str:lookup_field>/<str:lookup_value>/', views.ItemHistoryView.as_view(), name='item-history-lookup'),
+  path(f'{api_pattern}history/<int:id>/', views.GetItemHistoryByItemId.as_view(), name='item-history-lookup'),
 
   # ItemHistoryType
   path(f'{api_pattern}item-history-type/', views.ItemHistoryTypeView.as_view(), name='item-history-type-list'),
   path(f'{api_pattern}item-history-type/<str:lookup_field>/<str:lookup_value>/', views.ItemHistoryTypeView.as_view(), name='item-history-type-lookup'),
-
   # BorrowedItems
   path(f'{api_pattern}borrowed_items_by_user/<int:user_id>/', views.ItemView.get_borrowed_items_by_user_id, name='get_borrowed_items'),
 
