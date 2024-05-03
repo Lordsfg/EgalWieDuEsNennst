@@ -17,7 +17,8 @@ class ItemView(BaseCRUDAPIView):
         
         borrowed_items = Item.objects.filter(borrowed_by_user__id=user_id)
 
-        serializer = ItemSerializer(borrowed_items, many=True)
+        # serializer = ItemSerializer(borrowed_items, many=True)
+        serializer = ItemReturnModel(borrowed_items, many=True)
         return Response(serializer.data)
     
     @api_view(['GET'])
