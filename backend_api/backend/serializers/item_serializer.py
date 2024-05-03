@@ -39,10 +39,11 @@ class ItemReturnModel(serializers.ModelSerializer):
     item_name = serializers.CharField(source='product_type.name', required=False)
     description = serializers.CharField(source='product_type.description', required=False)
     location = serializers.CharField(source='current_room.room_number', required=False)
+    location_id = serializers.IntegerField(source='current_room.id', required=False)
 
     class Meta:
         model = Item
-        fields = ['id', 'item_name', 'description', 'annotation', 'location', 'borrowed_by_user_id', 'user_name', 'user_type', 'user_email']
+        fields = ['id', 'item_name', 'description', 'annotation', 'location', 'location_id', 'borrowed_by_user_id', 'user_name', 'user_type', 'user_email']
         read_only_fields = ['id']
 
     def get_user_email(self, instance):
