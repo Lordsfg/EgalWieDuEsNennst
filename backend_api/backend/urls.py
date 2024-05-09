@@ -29,23 +29,30 @@ urlpatterns = [
 
   # Get all Items
   path(f'{api_pattern}items-all/', views.ItemView.get_all_items, name='item-return'),
-  # Get item details by ID
+
+  # GET Item details by ID
   path(f'{api_pattern}item-details/<int:item_id>/', views.ItemView.get_item_details, name='item-details'),
 
+  # POST new items
   path(f'{api_pattern}items-new/', views.ItemView.add_new_items, name='item-new'),
 
   # ItemHistory
   path(f'{api_pattern}item-history/', views.ItemHistoryView.as_view(), name='item-history-list'),
   path(f'{api_pattern}item-history/<str:lookup_field>/<str:lookup_value>/', views.ItemHistoryView.as_view(), name='item-history-lookup'),
+
+  # GET item history by item id
   path(f'{api_pattern}history/<int:id>/', views.GetItemHistoryByItemId.as_view(), name='item-history-lookup'),
 
   # ItemHistoryType
   path(f'{api_pattern}item-history-type/', views.ItemHistoryTypeView.as_view(), name='item-history-type-list'),
   path(f'{api_pattern}item-history-type/<str:lookup_field>/<str:lookup_value>/', views.ItemHistoryTypeView.as_view(), name='item-history-type-lookup'),
-  # BorrowedItems
+
+
+  # GET borrowed items of user
   path(f'{api_pattern}borrowed_items_by_user/<int:user_id>/', views.ItemView.get_borrowed_items_by_user_id, name='get_borrowed_items'),
 
-  # All images of 1 item
+
+  # GET all images of one item
   path(f'{api_pattern}items/<int:id>/image/', ItemImageView.as_view(), name='item-image-detail'),
 ]
 
