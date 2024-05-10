@@ -19,6 +19,8 @@ class ItemHistoryView(BaseCRUDAPIView):
         # 1 = borrow, 2 = return
         history_type_id = request.data.get('item_history_type')
 
+        location_id = request.data.get('room')
+
         # Check if both user_id and item_id are provided
         if user_id is None or item_id is None or history_type_id is None:
             return Response({'error': 'Both user_id and item_id must be provided'}, status=status.HTTP_400_BAD_REQUEST)
@@ -31,6 +33,7 @@ class ItemHistoryView(BaseCRUDAPIView):
             item.borrowed_by_user_id = user_id
         if history_type_id == 2:
             item.borrowed_by_user_id = None
+            item.current_room_id = location_id
 
 
         item.save()
