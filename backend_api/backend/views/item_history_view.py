@@ -42,7 +42,7 @@ class ItemHistoryView(BaseCRUDAPIView):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({'message': 'Item and ItemHistory updated successfully'}, status=status.HTTP_200_OK)
+            return Response({'itemName': f'{item.product_type.name}', 'room': f'{item.current_room.room_number}'}, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
